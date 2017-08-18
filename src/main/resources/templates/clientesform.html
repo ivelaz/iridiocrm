@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link rel='shortcut icon' type='image/x-icon' href="#" th:href="@{/imgs/favicon.ico}" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" />
+<link rel="stylesheet" href="#" th:href="@{/css/sidebar.css}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Formulario Clientes</title>
+</head>
+<body>
+
+	   <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">                	
+                    <a href="#">
+                        <b><i>IRIDIO crm</i></b>
+                    </a>                   
+                </li>
+                <li>
+                    <a href="#" th:href="@{/crearcliente}">Crear cliente</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+					<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+						<img src="#" th:src="@{/imgs/menu.png}"/>
+					</a>
+		<!-- ****************************************************************************** -->
+
+	<div class="jumbotron" style="text-align:center; margin:auto; max-width: 700px; padding-left:  30px; padding-right: 30px; padding-top:  10px; padding-bottom: 30px;">
+	
+			<div  style="text-align:left; margin:auto;">
+
+				<form class="form-horizontal">
+					<fieldset>
+						<legend>Crear cliente:</legend>
+						
+						<div class="form-group">
+							<label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="nombre"
+									placeholder="Nombre"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="dni" class="col-lg-2 control-label">NIF/CIF:</label>
+							<div class="col-lg-10" style="max-width: 200px;">
+								<input type="text" class="form-control" id="dni"
+									placeholder="NIF/CIF" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Tipo:</label>
+							<div class="col-lg-10">
+								<div class="radio">
+									<label> <input type="radio" name="optionsRadios"
+										id="particular" value="particular" checked=""/> Particular
+									</label>
+								</div>
+								<div class="radio">
+									<label> <input type="radio" name="optionsRadios"
+										id="empresa" value="empresa"/> Empresa
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="telefono" class="col-lg-2 control-label">Teléfono:</label>
+							<div class="col-lg-10" style="max-width: 200px;">
+								<input type="text" class="form-control" id="telefono"
+									placeholder="Teléfono" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="col-lg-2 control-label">Email:</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="email"
+									placeholder="Correo electrónico" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="direccion" class="col-lg-2 control-label">Dirección:</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="direccion"
+									placeholder="Dirección postal" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="notas" class="col-lg-2 control-label">Notas:</label>
+							<div class="col-lg-10">
+								<textarea class="form-control" rows="3" id="notas"></textarea>
+								<span class="help-block">Notas referentes al cliente o alguno
+								de sus datos.</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">								
+								<button type="submit" class="btn btn-primary">Enviar</button>
+								<button type="reset" class="btn btn-default">Limpiar</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+			</div>
+	
+	</div>
+
+
+		<!-- ****************************************************************************** -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+     <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+        
+
+</body>
+</html>
