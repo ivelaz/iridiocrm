@@ -12,13 +12,15 @@ public class ClienteModel {
 	private int id;	
 	
 	@NotEmpty
-	@Size(min=2, max=40)
+	@Size(min=2,max=40)
 	private String nombre;	
 	
 	@NotEmpty
-	@Size(min=6, max=10)
+	@Size(min=6,max=10)
 	private String dni;	
+	
 	private String tipoCliente;		// Particular, Autónomo o Empresa
+	
 	@NotEmpty
 	@Size(min=9, max=14)
 	private String telefono;
@@ -28,7 +30,7 @@ public class ClienteModel {
 	private String email;	
 	
 	@NotEmpty
-	@Size(max=50)
+	@Size(min=2, max=50)
 	private String direccion;	
 	
 	@Size(max=80)
