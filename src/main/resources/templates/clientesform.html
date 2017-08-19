@@ -23,7 +23,7 @@
                     </a>                   
                 </li>
                 <li>
-                    <a href="#" th:href="@{/crearcliente}">Crear cliente</a>
+                    <a href="#" th:href="@{/clientes/crearcliente}">Crear cliente</a>
                 </li>
                 <li>
                     <a href="#">Shortcuts</a>
@@ -62,7 +62,7 @@
 	
 			<div  style="text-align:left; margin:auto;">
 
-				<form class="form-horizontal">
+				<form class="form-horizontal" action="#" th:action="@{/clientes/addCliente}" th:object="${cliente}" method="post">
 					<fieldset>
 						<legend>Crear cliente:</legend>
 						
@@ -70,7 +70,7 @@
 							<label for="nombre" class="col-lg-2 control-label">Nombre:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="nombre"
-									placeholder="Nombre"/>
+									placeholder="Nombre" th:field="*{nombre}" />
 							</div>
 						</div>
 
@@ -78,7 +78,7 @@
 							<label for="dni" class="col-lg-2 control-label">NIF/CIF:</label>
 							<div class="col-lg-10" style="max-width: 200px;">
 								<input type="text" class="form-control" id="dni"
-									placeholder="NIF/CIF" />
+									placeholder="NIF/CIF" th:field="*{dni}"/>
 							</div>
 						</div>
 
@@ -86,13 +86,18 @@
 							<label class="col-lg-2 control-label">Tipo:</label>
 							<div class="col-lg-10">
 								<div class="radio">
-									<label> <input type="radio" name="optionsRadios"
-										id="particular" value="particular" checked=""/> Particular
+									<label> <input type="radio" name="optionsRadios" th:field="*{tipoCliente}"
+										id="particular" value="Particular" checked=""/> Particular
 									</label>
 								</div>
 								<div class="radio">
-									<label> <input type="radio" name="optionsRadios"
-										id="empresa" value="empresa"/> Empresa
+									<label> <input type="radio" name="optionsRadios" th:field="*{tipoCliente}"
+										id="autonomo" value="Autónomo" /> Autónomo
+									</label>
+								</div>
+								<div class="radio">
+									<label> <input type="radio" name="optionsRadios" th:field="*{tipoCliente}"
+										id="empresa" value="Empresa"/> Empresa
 									</label>
 								</div>
 							</div>
@@ -102,7 +107,7 @@
 							<label for="telefono" class="col-lg-2 control-label">Teléfono:</label>
 							<div class="col-lg-10" style="max-width: 200px;">
 								<input type="text" class="form-control" id="telefono"
-									placeholder="Teléfono" />
+									placeholder="Teléfono" th:field="*{telefono}"/>
 							</div>
 						</div>
 
@@ -110,7 +115,7 @@
 							<label for="email" class="col-lg-2 control-label">Email:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="email"
-									placeholder="Correo electrónico" />
+									placeholder="Correo electrónico" th:field="*{email}"/>
 							</div>
 						</div>
 
@@ -118,16 +123,15 @@
 							<label for="direccion" class="col-lg-2 control-label">Dirección:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="direccion"
-									placeholder="Dirección postal" />
+									placeholder="Dirección postal" th:field="*{direccion}"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="notas" class="col-lg-2 control-label">Notas:</label>
 							<div class="col-lg-10">
-								<textarea class="form-control" rows="3" id="notas"></textarea>
-								<span class="help-block">Notas referentes al cliente o alguno
-								de sus datos.</span>
+								<input type="text" class="form-control" id="notas"
+									placeholder="Notas" th:field="*{notas}"/>
 							</div>
 						</div>
 
