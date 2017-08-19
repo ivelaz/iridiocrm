@@ -1,19 +1,37 @@
 package com.ivelaz.iridiocrm.models;
 
+//import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class ClienteModel {
 	
 	
 	private int id;	
 	
-	
+	@NotEmpty
+	@Size(min=2, max=40)
 	private String nombre;	
+	
+	@NotEmpty
+	@Size(min=6, max=10)
 	private String dni;	
 	private String tipoCliente;		// Particular, Autónomo o Empresa
-	private String telefono;	
+	@NotEmpty
+	@Size(min=9, max=14)
+	private String telefono;
+	
+	@Email
+	@NotEmpty
 	private String email;	
+	
+	@NotEmpty
+	@Size(max=50)
 	private String direccion;	
+	
+	@Size(max=80)
 	private String notas;
 	
 	

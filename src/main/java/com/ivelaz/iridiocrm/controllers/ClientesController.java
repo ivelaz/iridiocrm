@@ -1,8 +1,11 @@
 package com.ivelaz.iridiocrm.controllers;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +36,17 @@ public class ClientesController {
 	
 
 	@PostMapping("/addCliente")
-	public String addCliente(@ModelAttribute(name="cliente") ClienteModel cliente) {
+	public ModelAndView addCliente(@Valid @ModelAttribute(name="cliente") ClienteModel cliente, BindingResult bindingResult) {
+		ModelAndView mav = new ModelAndView();					
+		if(bindingResult.hasErrors()) {
+			mav.setViewName(ConstantesVistas.CLIENTES_FORM);
+			
+		} else {
+			mav.setViewName(ConstantesVistas.CLIENTES_FORM);						// ************** CAMBIAR A VISTA RESULTADOS **************	
+			mav.addObject("cliente", cliente);			
+		}
 		LOG.info("Método: addCliente() -- Parámetro: " + cliente.toString());		
-		return "redirect:/clientes/crearcliente";
+		return mav;
 		
 	}
 	

@@ -64,13 +64,15 @@
 
 				<form class="form-horizontal" action="#" th:action="@{/clientes/addCliente}" th:object="${cliente}" method="post">
 					<fieldset>
-						<legend>Crear cliente:</legend>
+						<legend>Crear cliente</legend>
+						<p class="text-danger" th:if="${#fields.hasErrors()}">Se han encontrado errores:</p>
 						
 						<div class="form-group">
 							<label for="nombre" class="col-lg-2 control-label">Nombre:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="nombre"
-									placeholder="Nombre" th:field="*{nombre}" />
+									placeholder="Nombre" th:field="*{nombre}" />								
+								<p class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
 							</div>
 						</div>
 
@@ -79,6 +81,7 @@
 							<div class="col-lg-10" style="max-width: 200px;">
 								<input type="text" class="form-control" id="dni"
 									placeholder="NIF/CIF" th:field="*{dni}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></p>
 							</div>
 						</div>
 
@@ -108,6 +111,8 @@
 							<div class="col-lg-10" style="max-width: 200px;">
 								<input type="text" class="form-control" id="telefono"
 									placeholder="Teléfono" th:field="*{telefono}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></p>
+
 							</div>
 						</div>
 
@@ -116,6 +121,8 @@
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="email"
 									placeholder="Correo electrónico" th:field="*{email}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+								
 							</div>
 						</div>
 
@@ -124,6 +131,7 @@
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="direccion"
 									placeholder="Dirección postal" th:field="*{direccion}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></p>
 							</div>
 						</div>
 
@@ -131,7 +139,7 @@
 							<label for="notas" class="col-lg-2 control-label">Notas:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="notas"
-									placeholder="Notas" th:field="*{notas}"/>
+									placeholder="Notas (opcional)" th:field="*{notas}"/>
 							</div>
 						</div>
 
