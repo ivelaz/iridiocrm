@@ -26,7 +26,7 @@ public class ClienteServiceImpl implements ClienteService{
 	private ClienteConverter clienteConverter;
 	
 	
-	@Transactional(readOnly=true)
+	@Transactional()
 	@Override
 	public ClienteModel addCliente(ClienteModel clienteModel) {
 		Cliente cliente = clienteRepository.save(clienteConverter.ClienteModelACliente(clienteModel));
