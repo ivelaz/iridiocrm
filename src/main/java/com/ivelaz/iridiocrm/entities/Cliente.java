@@ -21,7 +21,7 @@ public class Cliente {
 	@Column(name = "dni", length = 10)
 	private String dni;
 	
-	@Column(name = "tipocliente")
+	@Column(name = "tipocliente", length = 20)
 	private String tipoCliente;
 	
 	@Column(name = "telefono", length = 14)
@@ -29,6 +29,7 @@ public class Cliente {
 	
 	@Column(name = "email", length = 40)
 	private String email;
+	
 	@Column(name = "direccion", length = 50)
 	private String direccion;
 	
