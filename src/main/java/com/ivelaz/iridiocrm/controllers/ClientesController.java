@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ivelaz.iridiocrm.constants.ConstantesVistas;
@@ -50,15 +51,25 @@ public class ClientesController {
 		} else {
 			LOG.info("Método: addCliente() -- Parámetro: cliente: " + cliente.toString());
 			if(null != clienteService.addCliente(cliente)) {	// Si se guarda correctamente en BD
-				model.addAttribute("result", 1);
+				return "redirect:/clientes/verclientes?result=1";
 			} else {
-				model.addAttribute("result", 0);
-			}
-			model.addAttribute("pruebaresult", "prueba propagación");	// ELIMINAR: para probar los results sin error
+				return "redirect:/clientes/verclientes?result=0";
+			}			
 		}
 				
-		return ConstantesVistas.CLIENTES_FORM;		// CAMBIAR A: "redirect:/clientes/showclientes"
+				
+	}
+	
+	@GetMapping("/verclientes")
+	public ModelAndView listarClientes(@RequestParam(name="result", 
+											required=false) Integer resultado) {
 		
+		LOG.info("resultado al guardar cliente: " + resultado);
+		ModelAndView mav = new ModelAndView(ConstantesVistas.CLIENTES_LIST);
+		mav.addObject("clientes", clienteService.listarClientes());
+		mav.addObject("resultado", resultado);
+		
+		return mav;
 	}
 	
 }
