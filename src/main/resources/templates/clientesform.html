@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="#" th:href="@{/css/sidebar.css}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Crear cliente</title>
+<title th:text="${titulo}"></title>
 </head>
 <body>
 
@@ -64,12 +64,17 @@
 
 				<form class="form-horizontal" action="#" th:action="@{/clientes/addCliente}" th:object="${cliente}" method="post">
 					<fieldset>
-						<legend>Crear cliente</legend>
+						<legend th:text="${titulo}"></legend>
+						<p th:if="${cliente.id != 0}"> Nº Cliente: <span th:text="${cliente.id}"></span></p>
+						
 						<div class="alert alert-dismissible alert-danger" th:if="${#fields.hasErrors()}">  
 						  	<strong>Se han encontrado errores</strong>, por favor corrige la información y reenvía el formulario.
 						</div>
 						
 						<div class="form-group">
+						
+							<input type="hidden" th:field="*{id}"></input>	
+												
 							<label for="nombre" class="col-lg-2 control-label">Nombre:</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" id="nombre"

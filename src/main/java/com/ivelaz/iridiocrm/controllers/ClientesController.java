@@ -38,6 +38,21 @@ public class ClientesController {
 		ClienteModel cliente = new ClienteModel();
 		cliente.setTipoCliente("Particular");
 		mav.addObject("cliente", cliente);
+		mav.addObject("titulo", "Crear cliente");
+		return mav;
+	}
+	
+	@GetMapping("/editarcliente")
+	public ModelAndView editarCliente(@RequestParam(name="id") Integer id) {
+		ModelAndView mav = new ModelAndView();
+		ClienteModel cliente = clienteService.buscarClienteModelPorId(id);
+		if(cliente != null) {
+			mav.addObject("cliente", cliente);
+			mav.addObject("titulo", "Editar cliente");
+			mav.setViewName(ConstantesVistas.CLIENTES_FORM);
+		} else {
+			mav.setViewName(ConstantesVistas.CLIENTES_LIST + "?result=2");
+		}
 		return mav;
 	}
 	
@@ -47,6 +62,7 @@ public class ClientesController {
 												BindingResult bindingResult, Model model) {		
 							
 		if(bindingResult.hasErrors()) {
+			model.addAttribute("titulo", "Datos erróneos");
 			return ConstantesVistas.CLIENTES_FORM;			
 		} else {
 			LOG.info("Método: addCliente() -- Parámetro: cliente: " + cliente.toString());
@@ -64,7 +80,7 @@ public class ClientesController {
 	public ModelAndView listarClientes(@RequestParam(name="result", 
 											required=false) Integer resultado) {
 		
-		LOG.info("resultado al guardar cliente: " + resultado);
+		// LOG.info("resultado al guardar cliente: " + resultado);
 		ModelAndView mav = new ModelAndView(ConstantesVistas.CLIENTES_LIST);
 		mav.addObject("clientes", clienteService.listarClientes());
 		mav.addObject("resultado", resultado);

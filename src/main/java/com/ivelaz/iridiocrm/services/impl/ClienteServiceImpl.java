@@ -3,6 +3,8 @@ package com.ivelaz.iridiocrm.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import com.ivelaz.iridiocrm.services.ClienteService;
 
 @Service("clienteServiceImpl")
 public class ClienteServiceImpl implements ClienteService{
+	
+	private static final Log LOG = LogFactory.getLog(ClienteServiceImpl.class);
 
 	@Autowired
 	@Qualifier("clienteRepository")
@@ -29,7 +33,9 @@ public class ClienteServiceImpl implements ClienteService{
 	@Transactional()
 	@Override
 	public ClienteModel addCliente(ClienteModel clienteModel) {
+		
 		Cliente cliente = clienteRepository.save(clienteConverter.ClienteModelACliente(clienteModel));
+		LOG.info("id clienteModel:" + clienteModel.getId() + " id cliente:" + cliente.getId());
 		return clienteConverter.ClienteAClienteModel(cliente);
 	}
 	
