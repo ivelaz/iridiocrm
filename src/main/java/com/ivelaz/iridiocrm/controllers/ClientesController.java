@@ -43,17 +43,16 @@ public class ClientesController {
 	}
 	
 	@GetMapping("/editarcliente")
-	public ModelAndView editarCliente(@RequestParam(name="id") Integer id) {
-		ModelAndView mav = new ModelAndView();
-		ClienteModel cliente = clienteService.buscarClienteModelPorId(id);
-		if(cliente != null) {
-			mav.addObject("cliente", cliente);
-			mav.addObject("titulo", "Editar cliente");
-			mav.setViewName(ConstantesVistas.CLIENTES_FORM);
-		} else {
-			mav.setViewName(ConstantesVistas.CLIENTES_LIST + "?result=2");
-		}
-		return mav;
+	public String editarCliente(@RequestParam(name="id", required=true) Integer id, Model model) {
+		
+		try {
+			ClienteModel cliente = clienteService.buscarClienteModelPorId(id);	
+			model.addAttribute("cliente", cliente);			
+			model.addAttribute("titulo", "Editar cliente");
+			return ConstantesVistas.CLIENTES_FORM;
+		} catch(Exception ex) {
+			return "redirect:/clientes/verclientes?result=2";
+		}		
 	}
 	
 
