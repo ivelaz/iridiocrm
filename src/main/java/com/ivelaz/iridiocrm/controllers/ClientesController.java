@@ -55,6 +55,16 @@ public class ClientesController {
 		}		
 	}
 	
+	@GetMapping("/borrarcliente")
+	public String borrarCliente(@RequestParam(name="id", required=true) Integer id) {
+		
+		try {			
+			clienteService.borrarCliente(id);
+			return "redirect:/clientes/verclientes?result=3";	//Confirmación borrado
+		} catch(Exception ex) {
+			return "redirect:/clientes/verclientes?result=2";	//Mensaje error al recuperar cliente de la BD.
+		}		
+	}
 
 	@PostMapping("/addCliente")
 	public String addCliente(@Valid @ModelAttribute(name="cliente") ClienteModel cliente, 
