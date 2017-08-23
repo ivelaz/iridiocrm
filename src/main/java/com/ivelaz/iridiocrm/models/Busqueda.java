@@ -1,36 +1,29 @@
 package com.ivelaz.iridiocrm.models;
 
-public class Busqueda {
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class Busqueda {	
 	
-	private boolean registrarLlamada;
 	
-	private String campoBusqueda;
+	private String tipoBusqueda;
 	
+	@NotEmpty
 	private String palabraClave;
 	
 	public Busqueda() {}
 
-	public Busqueda(boolean registrarLlamada, String campoBusqueda, String palabraClave) {
+	public Busqueda(String tipoBusqueda, String palabraClave) {
 		super();
-		this.registrarLlamada = registrarLlamada;
-		this.campoBusqueda = campoBusqueda;
+		this.tipoBusqueda = tipoBusqueda;
 		this.palabraClave = palabraClave;
 	}
 
-	public boolean isRegistrarLlamada() {
-		return registrarLlamada;
+	public String getTipoBusqueda() {
+		return tipoBusqueda;
 	}
 
-	public void setRegistrarLlamada(boolean registrarLlamada) {
-		this.registrarLlamada = registrarLlamada;
-	}
-
-	public String getCampoBusqueda() {
-		return campoBusqueda;
-	}
-
-	public void setCampoBusqueda(String campoBusqueda) {
-		this.campoBusqueda = campoBusqueda;
+	public void setTipoBusqueda(String tipoBusqueda) {
+		this.tipoBusqueda = tipoBusqueda;
 	}
 
 	public String getPalabraClave() {
@@ -40,6 +33,7 @@ public class Busqueda {
 	public void setPalabraClave(String palabraClave) {
 		this.palabraClave = palabraClave;
 	}
-	
+
+
 	
 }
