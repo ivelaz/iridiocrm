@@ -35,7 +35,8 @@ public class ClientesController {
 	@GetMapping("/crearcliente")
 	public ModelAndView mostrarFormulario() {
 		ModelAndView mav = new ModelAndView(ConstantesVistas.CLIENTES_FORM);
-		ClienteModel cliente = new ClienteModel();
+		ClienteModel cliente = new ClienteModel();	
+				
 		cliente.setTipoCliente("Particular");
 		mav.addObject("cliente", cliente);
 		mav.addObject("titulo", "Crear cliente");

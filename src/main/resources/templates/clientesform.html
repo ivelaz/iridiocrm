@@ -73,7 +73,11 @@
 						
 						<div class="form-group">
 						
+							<!-- Campos  ocultos para propagar id y listado de llamadas si existen -->
 							<input type="hidden" th:field="*{id}"></input>	
+							<span th:if="${llamadas != null}">
+								<input type="hidden" th:field="*{llamadas}"></input>
+							</span>
 												
 							<label for="nombre" class="col-lg-2 control-label">Nombre:</label>
 							<div class="col-lg-10">

@@ -54,10 +54,32 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public List<ClienteModel> buscarPorNombre(String palabraClave) {
 		List<ClienteModel> clienteModels = new ArrayList<ClienteModel>();
-		List<Cliente> clientes =clienteRepository.buscarPorNombre(palabraClave);
+		List<Cliente> clientes = clienteRepository.buscarPorNombre(palabraClave);
 		for(Cliente cliente : clientes) {
 			clienteModels.add(clienteConverter.ClienteAClienteModel(cliente));
 		}
+		return clienteModels;
+	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public List<ClienteModel> buscarPorDni(String palabraClave) {
+		List<ClienteModel> clienteModels = new ArrayList<ClienteModel>();
+		List<Cliente> clientes = clienteRepository.buscarPorDni(palabraClave);
+		for(Cliente cliente : clientes) {
+			clienteModels.add(clienteConverter.ClienteAClienteModel(cliente));
+		}		
+		return clienteModels;
+	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public List<ClienteModel> buscarPorTelefono(String palabraClave) {
+		List<ClienteModel> clienteModels = new ArrayList<ClienteModel>();
+		List<Cliente> clientes = clienteRepository.buscarPorTelefono(palabraClave);
+		for(Cliente cliente : clientes) {
+			clienteModels.add(clienteConverter.ClienteAClienteModel(cliente));
+		}		
 		return clienteModels;
 	}
 

@@ -13,6 +13,10 @@ public interface ClienteService {
 	
 	public abstract List<ClienteModel> buscarPorNombre(String palabraClave);
 	
+	public abstract List<ClienteModel> buscarPorDni(String palabraClave);
+	
+	public abstract List<ClienteModel> buscarPorTelefono(String palabraClave);
+	
 	public abstract Cliente buscarClientePorId(int id);
 	
 	public abstract ClienteModel buscarClienteModelPorId(int id);

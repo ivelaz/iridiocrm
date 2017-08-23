@@ -11,6 +11,7 @@ public class ClienteConverter {
 	public Cliente ClienteModelACliente(ClienteModel clienteModel) {
 		Cliente cliente = new Cliente();
 		cliente.setId(clienteModel.getId());
+		cliente.setLlamadas(clienteModel.getLlamadas());
 		cliente.setNombre(clienteModel.getNombre());
 		cliente.setDni(clienteModel.getDni());
 		cliente.setTipoCliente(clienteModel.getTipoCliente());
@@ -24,6 +25,7 @@ public class ClienteConverter {
 	public ClienteModel ClienteAClienteModel(Cliente cliente) {
 		ClienteModel clienteModel = new ClienteModel();
 		clienteModel.setId(cliente.getId());
+		clienteModel.setLlamadas(cliente.getLlamadas());
 		clienteModel.setNombre(cliente.getNombre());
 		clienteModel.setDni(cliente.getDni());
 		clienteModel.setTipoCliente(cliente.getTipoCliente());

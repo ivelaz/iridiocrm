@@ -20,4 +20,14 @@ public interface ClienteRepository extends JpaRepository<Cliente, Serializable>{
 			nativeQuery = true)
 	public List<Cliente> buscarPorNombre(@Param("palabraClave") String palabraClave);
 	
+	// Lista todos los clientes cuyo dni contenga la secuencia palabraClave:
+	@Query(value = "SELECT * FROM clientes WHERE dni LIKE %:palabraClave%",
+			nativeQuery = true)
+	public List<Cliente> buscarPorDni(@Param("palabraClave") String palabraClave);
+	
+	// Lista todos los cliente cuyo teléfono contenga la secuencia palabraClave:
+	@Query(value = "SELECT * FROM clientes WHERE telefono LIKE %:palabraClave%",
+			nativeQuery = true)
+	public List<Cliente> buscarPorTelefono(@Param("palabraClave") String palabraClave);
+	
 }
