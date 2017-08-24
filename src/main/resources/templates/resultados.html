@@ -71,10 +71,10 @@
 										<td th:text="${cliente.dni}"></td>
 										<td th:text="${cliente.telefono}"></td>
 										<td>
-											<a href="#" th:href="@{/clientes/editarcliente?id=__${cliente.id}__}">												
+											<a href="#" th:href="@{/llamadas/nuevallamada?id=__${cliente.id}__}">												
 												<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></button>
 											</a>	
-											<a href="#" th:href="@{/clientes/borrarcliente?id=__${cliente.id}__}" onclick="return confirm('Seguro que deseas eliminarlo? esta acción no se puede deshacer.');">
+											<a href="#" th:href="@{/llamadas/listarllamadas?id=__${cliente.id}__}" onclick="return confirm('Seguro que deseas eliminarlo? esta acción no se puede deshacer.');">
 												<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></button>
 											</a>
 										</td>

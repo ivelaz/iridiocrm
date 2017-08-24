@@ -1,7 +1,6 @@
 package com.ivelaz.iridiocrm.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ivelaz.iridiocrm.constants.ConstantesVistas;
-import com.ivelaz.iridiocrm.entities.Cliente;
-import com.ivelaz.iridiocrm.entities.Llamada;
 import com.ivelaz.iridiocrm.models.Busqueda;
 import com.ivelaz.iridiocrm.models.ClienteModel;
 import com.ivelaz.iridiocrm.services.ClienteService;
@@ -68,7 +65,8 @@ public class BusquedasController {
 				String palabra = busqueda.getPalabraClave();
 				palabra.replaceAll(" ", "");
 				try {
-					int id = Integer.parseInt(palabra);					
+					//int id = Integer.parseInt(palabra);
+					Integer.parseInt(palabra);
 	
 				} catch (Exception ex) {
 					model.addAttribute("titulo", "Error en número de cliente");
@@ -112,18 +110,5 @@ public class BusquedasController {
 		}
 	
 	}
-
-	@GetMapping("/probar")
-	public String probar() {
-		Llamada llamada = new Llamada(clienteService.buscarClientePorId(1), 
-				new Date(), "Recibida", "900000000", "el pollo llama", "notas de la llamada del pollo");
-		Llamada guardada = llamadaService.addLlamada(llamada);
-		Cliente cliente = clienteService.buscarClientePorId(1);
-		System.out.println(cliente.getLlamadas().get(1).getAsunto());
-		System.out.println("tamaño " + cliente.getLlamadas().size());
-		return guardada.getTelefono();
-	}
-	
-	
 	
 }

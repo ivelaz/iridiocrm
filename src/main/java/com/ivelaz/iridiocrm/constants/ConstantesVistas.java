@@ -11,4 +11,6 @@ public class ConstantesVistas {
 	public static final String BUSCAR_FORM = "buscarform";
 	
 	public static final String RESULTADOS =  "resultados";
+	
+	public static final String LLAMADAS_FORM = "llamadasform";
 }
