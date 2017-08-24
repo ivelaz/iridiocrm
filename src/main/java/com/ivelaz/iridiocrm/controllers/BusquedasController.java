@@ -64,23 +64,28 @@ public class BusquedasController {
 		List<ClienteModel> lista = new ArrayList<ClienteModel>();
 		
 		switch(busqueda.getTipoBusqueda()) {
-		    case "id":
+			case "id":
 				String palabra = busqueda.getPalabraClave();
 				palabra.replaceAll(" ", "");
 				try {
 					int id = Integer.parseInt(palabra);					
-							if(clienteService.buscarClienteModelPorId(id) != null) {
-								lista.add(clienteService.buscarClienteModelPorId(id));
-							} else {
-								model.addAttribute("sinresultados", true);
-							}					
-					model.addAttribute("resultados", lista);
-					return ConstantesVistas.RESULTADOS;
+	
 				} catch (Exception ex) {
 					model.addAttribute("titulo", "Error en número de cliente");
 					model.addAttribute("errorid", 1);
 					return ConstantesVistas.BUSCAR_FORM;
 				}	
+	
+				try {		
+					lista.add(clienteService.buscarClienteModelPorId(Integer.parseInt(palabra)));
+					LOG.info("Método: buscarCliente() Parámetro: id=" + Integer.parseInt(palabra));
+					model.addAttribute("resultados", lista);
+					return ConstantesVistas.RESULTADOS;
+				} catch(Exception ex) {
+					model.addAttribute("resultados", lista);
+					model.addAttribute("sinresultados", true);
+					return ConstantesVistas.RESULTADOS;		
+				}
 	            
 			case "nombre":
 				lista = clienteService.buscarPorNombre(busqueda.getPalabraClave());
