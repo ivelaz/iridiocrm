@@ -1,5 +1,8 @@
 package com.ivelaz.iridiocrm.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ivelaz.iridiocrm.constants.ConstantesVistas;
 import com.ivelaz.iridiocrm.models.Busqueda;
+import com.ivelaz.iridiocrm.models.ClienteModel;
 import com.ivelaz.iridiocrm.services.ClienteService;
 
 @Controller
@@ -50,13 +54,20 @@ public class BusquedasController {
 			return ConstantesVistas.BUSCAR_FORM;
 		}		
 		
+		List<ClienteModel> lista = new ArrayList<ClienteModel>();
+		
 		switch(busqueda.getTipoBusqueda()) {
 		    case "id":
 				String palabra = busqueda.getPalabraClave();
 				palabra.replaceAll(" ", "");
 				try {
-					int id = Integer.parseInt(palabra);
-					model.addAttribute("resultados", clienteService.buscarClienteModelPorId(id));
+					int id = Integer.parseInt(palabra);					
+							if(clienteService.buscarClienteModelPorId(id) != null) {
+								lista.add(clienteService.buscarClienteModelPorId(id));
+							} else {
+								model.addAttribute("sinresultados", true);
+							}					
+					model.addAttribute("resultados", lista);
 					return ConstantesVistas.RESULTADOS;
 				} catch (Exception ex) {
 					model.addAttribute("titulo", "Error en número de cliente");
@@ -65,15 +76,21 @@ public class BusquedasController {
 				}	
 	            
 			case "nombre":
-				model.addAttribute("resultados", clienteService.buscarPorNombre(busqueda.getPalabraClave()));
+				lista = clienteService.buscarPorNombre(busqueda.getPalabraClave());
+				if(lista.isEmpty()) { model.addAttribute("sinresultados", true); }
+				model.addAttribute("resultados", lista);
 				return ConstantesVistas.RESULTADOS;
 			    
 			case "dni":
-				model.addAttribute("resultados", clienteService.buscarPorDni(busqueda.getPalabraClave()));
+				lista = clienteService.buscarPorDni(busqueda.getPalabraClave());
+				if(lista.isEmpty()) { model.addAttribute("sinresultados", true); }
+				model.addAttribute("resultados", lista);
 				return ConstantesVistas.RESULTADOS;
 				
 			case "telefono":
-				model.addAttribute("resultados", clienteService.buscarPorTelefono(busqueda.getPalabraClave()));
+				lista = clienteService.buscarPorTelefono(busqueda.getPalabraClave());
+				if(lista.isEmpty()) { model.addAttribute("sinresultados", true); }
+				model.addAttribute("resultados", lista);
 				return ConstantesVistas.RESULTADOS;
 				
 			default:
