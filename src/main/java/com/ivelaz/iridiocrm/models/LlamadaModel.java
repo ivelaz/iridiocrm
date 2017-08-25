@@ -2,6 +2,10 @@ package com.ivelaz.iridiocrm.models;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.ivelaz.iridiocrm.entities.Cliente;
 
 public class LlamadaModel {	
@@ -14,10 +18,16 @@ public class LlamadaModel {
 
 	private String tipo;	
 
+	@NotEmpty
+	@Size(min=2, max=14)
 	private String telefono;
 
+	@NotEmpty
+	@Size(min=2, max=50)
 	private String asunto;
 	
+	@NotEmpty
+	@Size(min=2, max=200)
 	private String observaciones;
 	
 	public LlamadaModel() {}

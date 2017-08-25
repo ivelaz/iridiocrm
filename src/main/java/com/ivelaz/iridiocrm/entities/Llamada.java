@@ -39,7 +39,7 @@ public class Llamada {
 	@Column(name = "asunto", length = 50)
 	private String asunto;
 
-	@Column(name = "observaciones", length = 80)
+	@Column(name = "observaciones", length = 200)
 	private String observaciones;
 
 	public Llamada() {

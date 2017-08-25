@@ -1,5 +1,6 @@
 package com.ivelaz.iridiocrm.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.logging.Log;
@@ -42,18 +43,22 @@ public class LlamadasController {
 		llamada.setCliente(cliente);
 		llamada.setFecha(new Date());
 		llamada.setTipo("Recibida");
-		llamada.setTelefono(cliente.getTelefono());
-		
-		mav.addObject("llamada", llamada);
-		//mav.addObject("cliente", cliente);
+		llamada.setTelefono(cliente.getTelefono());		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaStr = sdf.format(llamada.getFecha());
+		sdf = new SimpleDateFormat("hh:mm:ss");
+		String horaStr = sdf.format(llamada.getFecha());
+		mav.addObject("fechastr", fechaStr);
+		mav.addObject("horastr", horaStr);
+		mav.addObject("llamada", llamada);		
 		mav.addObject("titulo", "Registrar nueva llamada");
-		LOG.info("Método llamadaForm() Antes de return");
+		
 		return mav;
 	}
 	
+	// @PostMapping("/addllamada")@Valid @ModelAttribute(name.....
+	// convertir llamadamodel con clientemodel
 	
 	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id"
-	
-	// @PostMapping("/addllamada")@Valid @ModelAttribute(name.....
 
 }
