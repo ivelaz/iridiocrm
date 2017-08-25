@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "llamadas")
@@ -18,7 +22,7 @@ public class Llamada {
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
-
+		
 	@ManyToOne
 	@JoinColumn(name = "clienteid")
 	private Cliente cliente;
@@ -27,11 +31,11 @@ public class Llamada {
 	private Date fecha;
 
 	@Column(name = "tipo", length = 20)
-	private String tipo;
-
+	private String tipo;	
+	
 	@Column(name = "telefono", length = 14)
 	private String telefono;
-
+	
 	@Column(name = "asunto", length = 50)
 	private String asunto;
 
@@ -59,6 +63,8 @@ public class Llamada {
 		this.asunto = asunto;
 		this.observaciones = observaciones;
 	}
+	
+	
 
 	public int getId() {
 		return id;
