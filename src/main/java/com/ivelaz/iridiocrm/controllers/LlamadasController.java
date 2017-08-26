@@ -84,7 +84,7 @@ public class LlamadasController {
 		}
 	}
 	
-	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id" REQUESTPARAM result
+
 	@GetMapping("/listarllamadas")
 	public String listarLlamadas(@RequestParam(name="id", required=false) Integer id,
 				@RequestParam(name="result", required=false) Integer result, Model model) {
@@ -99,7 +99,8 @@ public class LlamadasController {
 					resultados.add(llamada);
 				}
 			}
-			llamadas = resultados;			
+			llamadas = resultados;
+			model.addAttribute("cliente", clienteService.buscarClientePorId(id).getNombre());
 		} 
 			
 		if(llamadas.isEmpty()) {
@@ -109,7 +110,34 @@ public class LlamadasController {
 		}		
 		
 		model.addAttribute("lista", llamadas);
-		return "listallamadas";
+		return ConstantesVistas.LISTAR_LLAMADAS;
 	}
+	
+	@GetMapping("/verllamada")
+	public String verLlamada(@RequestParam(name="id", required=true) Integer id,
+			Model model) {
+		try {
+			Llamada llamada = llamadaService.buscarLlamadaPorId(id);
+			model.addAttribute("llamada", llamada);
+			return ConstantesVistas.VER_LLAMADA;
+		} catch(Exception ex) {
+			return "redirect:/llamadas/listarllamadas?result=1";
+		}		
+	}
+	
+	@GetMapping("/borrarllamada")
+	public String borrarLlamada(@RequestParam(name="id", required=true) Integer id,
+			Model model) {
+		try {
+			int idCliente = llamadaService.buscarLlamadaPorId(id).getCliente().getId();				
+			llamadaService.borrarLlamada(id);
+			LOG.info("Método borrarLLAmada id=" + idCliente);
+			return "redirect:/llamadas/listarllamadas?id=" + idCliente;
+		} catch(Exception ex) {
+			return "redirect:/llamadas/listarllamadas?result=1";
+		}		
+	}
+	
+	
 
 }

@@ -13,4 +13,8 @@ public class ConstantesVistas {
 	public static final String RESULTADOS =  "resultados";
 	
 	public static final String LLAMADAS_FORM = "llamadasform";
+	
+	public static final String LISTAR_LLAMADAS = "listallamadas";
+	
+	public static final String VER_LLAMADA = "verllamada";
 }
