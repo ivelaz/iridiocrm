@@ -3,6 +3,7 @@ iridio crm es un pequeño proyecto desarrollado en Java EE con Spring Boot, Spri
 
 # Base de datos MySql
 Los datos necesarios para que la aplicación pueda acceder a la base de datos, pueden conocerse y modificarse en el fichero: application.yml que se encuentra en la ruta: /src/main/resources
+
 Los datos de acceso por defecto son:
 
     + url: jdbc:mysql://localhost:3306/iridiodb?useSSL=false
