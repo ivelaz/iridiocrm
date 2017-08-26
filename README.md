@@ -6,7 +6,7 @@ Los datos necesarios para que la aplicación pueda acceder a la base de datos, p
 
 Los datos de acceso por defecto son:
 
-    + url: jdbc:mysql://localhost:3306/iridiodb?useSSL=false
+    + url:      jdbc:mysql://localhost:3306/iridiodb?useSSL=false
     + username: admin
     + password: pass
     
