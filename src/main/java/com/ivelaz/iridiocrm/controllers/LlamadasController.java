@@ -3,12 +3,18 @@ package com.ivelaz.iridiocrm.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,24 +46,31 @@ public class LlamadasController {
 		LOG.info("Método llamadaForm() Parámetro id=" + id);
 		ClienteModel cliente = clienteService.buscarClienteModelPorId(id);
 		LlamadaModel llamada = new LlamadaModel();
-		llamada.setCliente(cliente);
-		llamada.setFecha(new Date());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		String fechaStr = sdf.format(new Date());
+		llamada.setFecha(fechaStr);
+		llamada.setCliente(cliente.getId());		
 		llamada.setTipo("Recibida");
-		llamada.setTelefono(cliente.getTelefono());		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		String fechaStr = sdf.format(llamada.getFecha());
-		sdf = new SimpleDateFormat("hh:mm:ss");
-		String horaStr = sdf.format(llamada.getFecha());
-		mav.addObject("fechastr", fechaStr);
-		mav.addObject("horastr", horaStr);
+		llamada.setTelefono(cliente.getTelefono());			
+		mav.addObject("fechastr", fechaStr);		
 		mav.addObject("llamada", llamada);		
 		mav.addObject("titulo", "Registrar nueva llamada");
 		
 		return mav;
 	}
 	
-	// @PostMapping("/addllamada")@Valid @ModelAttribute(name.....
-	// convertir llamadamodel con clientemodel
+	@PostMapping("/addllamada")
+	public String addLlamada(@Valid @ModelAttribute(name="llamada") LlamadaModel llamadaModel,
+			BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("titulo", "Datos erróneos");
+			return ConstantesVistas.LLAMADAS_FORM;
+		} else {
+			return "redirect:http://www.google.es";
+		}
+		
+		//return null;
+	}
 	
 	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id"
 

@@ -42,8 +42,9 @@
 
 	<div class="well" style="text-align:center; margin:auto; max-width: 700px; padding-left:  30px; padding-right: 30px; padding-top:  10px; padding-bottom: 30px;">
 	
-			<div  style="text-align:left; margin:auto;">
-
+			<div  style="text-align:left; margin:auto;">				
+				
+				
 				<form class="form-horizontal" action="#" th:action="@{/llamadas/addllamada}" th:object="${llamada}" method="post">
 					<fieldset>
 						<legend th:text="${titulo}"></legend>						
@@ -53,10 +54,8 @@
 						</div>
 				
 						
-						<div class="form-group">
-		
+						<div class="form-group">		
 							<p>Fecha: <span th:text="${fechastr}"></span></p>
-							<p>Hora: <span th:text="${horastr}"></span></p>
 							<!--  Campos ocultos cliente y fecha -->
 							<input type="hidden" th:field="*{cliente}"></input>
 							<input type="hidden" th:field="*{fecha}"></input>
@@ -98,8 +97,8 @@
 							<label for="observaciones" class="col-lg-2 control-label">Observaciones</label>
 							<div class="col-lg-10">
 								<!--  input type="text" class="form-control" id="observaciones"
-									placeholder="resumen de la llamada" th:field="*{observaciones}"/ -->
-								<textarea class="form-control" rows="2"
+									placeholder="resumen de la llamada" th:field="*{observaciones}"/-->
+								<textarea class="form-control" 
 									placeholder="resumen de la llamada" th:field="*{observaciones}"></textarea>
 								<p class="text-danger" th:if="${#fields.hasErrors('observaciones')}" th:errors="*{observaciones}"></p>									
 							</div>							

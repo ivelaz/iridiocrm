@@ -6,15 +6,13 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.ivelaz.iridiocrm.entities.Cliente;
-
 public class LlamadaModel {	
 
 	private int id;		
 
-	private ClienteModel cliente;
+	private int cliente;
 
-	private Date fecha;
+	private String fecha;
 
 	private String tipo;	
 
@@ -32,10 +30,8 @@ public class LlamadaModel {
 	
 	public LlamadaModel() {}
 
-	public LlamadaModel(int id, ClienteModel cliente, Date fecha, String tipo, String telefono, String asunto,
-			String observaciones) {
+	public LlamadaModel(int cliente, String fecha, String tipo, String telefono, String asunto, String observaciones) {
 		super();
-		this.id = id;
 		this.cliente = cliente;
 		this.fecha = fecha;
 		this.tipo = tipo;
@@ -52,19 +48,19 @@ public class LlamadaModel {
 		this.id = id;
 	}
 
-	public ClienteModel getCliente() {
+	public int getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteModel cliente) {
+	public void setCliente(int cliente) {
 		this.cliente = cliente;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -100,8 +96,5 @@ public class LlamadaModel {
 		this.observaciones = observaciones;
 	}
 
-
 	
-	
-
 }
