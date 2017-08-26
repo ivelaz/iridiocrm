@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ivelaz.iridiocrm.components.LlamadaConverter;
 import com.ivelaz.iridiocrm.constants.ConstantesVistas;
+import com.ivelaz.iridiocrm.entities.Llamada;
 import com.ivelaz.iridiocrm.models.ClienteModel;
 import com.ivelaz.iridiocrm.models.LlamadaModel;
 import com.ivelaz.iridiocrm.services.ClienteService;
@@ -39,6 +41,10 @@ public class LlamadasController {
 	@Qualifier("llamadaServiceImpl")
 	private LlamadaService llamadaService;
 	
+	@Autowired
+	@Qualifier("llamadaConverter")
+	LlamadaConverter llamadaConverter;
+	
 	@GetMapping("/nuevallamada")
 	public ModelAndView llamadaForm(@RequestParam(name="id", required=true) Integer id) {			
 		
@@ -49,7 +55,7 @@ public class LlamadasController {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		String fechaStr = sdf.format(new Date());
 		llamada.setFecha(fechaStr);
-		llamada.setCliente(cliente.getId());		
+		llamada.setCliente(id);		
 		llamada.setTipo("Recibida");
 		llamada.setTelefono(cliente.getTelefono());			
 		mav.addObject("fechastr", fechaStr);		
@@ -61,17 +67,21 @@ public class LlamadasController {
 	
 	@PostMapping("/addllamada")
 	public String addLlamada(@Valid @ModelAttribute(name="llamada") LlamadaModel llamadaModel,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, Model model) {	
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("titulo", "Datos erróneos");
 			return ConstantesVistas.LLAMADAS_FORM;
 		} else {
-			return "redirect:http://www.google.es";
+			Llamada llamada = new Llamada();
+			llamada = llamadaConverter.llamadaModelALlamada(llamadaModel);
+			if(null != llamadaService.addLlamada(llamada)) {	// Si se guarda correctamente en BD
+				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=1";
+			} else {
+				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=0";
+			}
 		}
-		
-		//return null;
 	}
 	
-	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id"
+	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id" REQUESTPARAM result
 
 }
