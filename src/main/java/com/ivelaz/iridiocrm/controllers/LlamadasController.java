@@ -1,7 +1,9 @@
 package com.ivelaz.iridiocrm.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -75,13 +77,39 @@ public class LlamadasController {
 			Llamada llamada = new Llamada();
 			llamada = llamadaConverter.llamadaModelALlamada(llamadaModel);
 			if(null != llamadaService.addLlamada(llamada)) {	// Si se guarda correctamente en BD
-				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=1";
+				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=2";
 			} else {
-				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=0";
+				return "redirect:/llamadas/listarllamadas?id=" + llamada.getCliente().getId() + "&result=1";
 			}
 		}
 	}
 	
 	// @GetMapping("/listarllamadas") CON REQUESTPARAM: "id" REQUESTPARAM result
+	@GetMapping("/listarllamadas")
+	public String listarLlamadas(@RequestParam(name="id", required=false) Integer id,
+				@RequestParam(name="result", required=false) Integer result, Model model) {
+		
+		model.addAttribute("result", result);
+		List<Llamada> llamadas = new ArrayList<Llamada>();
+		llamadas = llamadaService.listarLLamadas();
+		if(id != null) {
+			List<Llamada> resultados = new ArrayList<Llamada>();
+			for(Llamada llamada : llamadas) {
+				if(llamada.getCliente().getId() == id) {
+					resultados.add(llamada);
+				}
+			}
+			llamadas = resultados;			
+		} 
+			
+		if(llamadas.isEmpty()) {
+			model.addAttribute("vacia", 1);
+		} else {
+			model.addAttribute("vacia", 2);
+		}		
+		
+		model.addAttribute("lista", llamadas);
+		return "listallamadas";
+	}
 
 }

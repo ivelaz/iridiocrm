@@ -98,7 +98,7 @@
 							<div class="col-lg-10">
 								<!--  input type="text" class="form-control" id="observaciones"
 									placeholder="resumen de la llamada" th:field="*{observaciones}"/-->
-								<textarea class="form-control" 
+								<textarea class="form-control" rows = "2"
 									placeholder="resumen de la llamada" th:field="*{observaciones}"></textarea>
 								<p class="text-danger" th:if="${#fields.hasErrors('observaciones')}" th:errors="*{observaciones}"></p>									
 							</div>							
