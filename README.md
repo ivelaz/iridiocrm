@@ -13,6 +13,6 @@ Los datos de acceso por defecto son:
 La base de datos puede estar completamente vacía ya que la aplicación se encargará de generar las distintas tablas necesarias para su funcionamiento.
 
 # Deployment
-Esta versión del crm genera un archivo de extensión JAR con Tomcat embebido propio de Spring Boot. La versión WAR para despliegue en cualquier servidor externo (como Tomcat o GlassFish) que sea compatible con esta tecnología, se puede encontrar aquí: https://github.com/ivelaz/iridiocrmwar
+Esta versión del crm genera un archivo de extensión JAR con Tomcat embebido propio de Spring Boot. La versión WAR para despliegue en cualquier servidor externo que sea compatible con esta tecnología (como Tomcat o GlassFish por ejemplo), se puede encontrar aquí: https://github.com/ivelaz/iridiocrmwar
 
 
