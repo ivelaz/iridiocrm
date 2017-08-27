@@ -13,6 +13,6 @@ Los datos de acceso por defecto son:
 La base de datos puede estar completamente vacía ya que la aplicación se encargará de generar las distintas tablas necesarias para su funcionamiento.
 
 # Deployment
-Esta versión del crm genera un archivo de extensión JAR con Tomcat embebido propio de Spring Boot. En otro repositorio publicaré la versión WAR para despliegue en cualquier contenedor de servlets externo (como Tomcat o GlassFish) que sea compatible con esta tecnología.
+Esta versión del crm genera un archivo de extensión JAR con Tomcat embebido propio de Spring Boot. En otro repositorio publicaré la versión WAR para despliegue en cualquier servidor externo (como Tomcat o GlassFish) que sea compatible con esta tecnología.
 
 
