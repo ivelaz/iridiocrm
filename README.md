@@ -1,5 +1,5 @@
 # iridio crm
-El software iridio crm es un pequeño proyecto desarrollado en Java EE con Spring Boot, Spring Data JPA, Thymeleaf e Hibernate, que permite registrar las llamadas, recibidas y emitidas, por los clientes. No trata de ser una solución comercial (aunque por supuesto funciona) sino más bien código para ensayar habilidades (opino que se aprende a programar... programando).
+El software iridio crm es un pequeño proyecto desarrollado en Java EE con Spring Boot, Spring Data JPA, Thymeleaf e Hibernate, que permite a una empresa registrar las llamadas, recibidas y emitidas, por los clientes. 
 
 # Base de datos MySql
 Los datos necesarios para que la aplicación pueda acceder a la base de datos, pueden conocerse y modificarse en el fichero: application.yml que se encuentra en la ruta: /src/main/resources
